@@ -1,6 +1,6 @@
 # Twitter4j Sample #
 
-This project is meant to show how JRuby can be used to read from a Twitter stream. It shows in basic form how to load jar files, work with a Java class, and handle a Java exception.
+This project is meant to show how JRuby can be used to read from the Twitter API. It shows in basic form how to load jar files, work with a Java class, and handle a Java exception.
 
 ## oAuth Note ##
 
