@@ -10,18 +10,22 @@ def twitter4j
   Java::Twitter4j
 end
 
-java_import twitter4j.Status
-java_import twitter4j.StatusAdapter
-java_import twitter4j.StatusDeletionNotice
-java_import twitter4j.StatusListener
-java_import twitter4j.TwitterException
-java_import twitter4j.TwitterStream
-java_import twitter4j.TwitterStreamFactory
+import twitter4j.Status
+import twitter4j.Twitter
+import twitter4j.TwitterException
+import twitter4j.TwitterFactory
+import twitter4j.User
 
-twitterStream = TwitterStreamFactory.new.getInstance
-
-listener = StatusListener.new do
-  def onStatus(status)
+begin
+  twitter = TwitterFactory.new.getInstance
+  user = twitter.verifyCredentials
+  statuses = twitter.getHomeTimeline
+  puts "Showing @#{user.getScreenName}'s home timeline"
+  statuses.each { |status|
     puts "@#{status.getUser.getScreenName} - #{status.getText}"
-  end
+  }
+rescue TwitterException => te
+  te.printStackTrace
+  puts "Failed to get timeline: #{te.getMessage}"
+  exit(-1)
 end
