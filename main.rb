@@ -19,3 +19,9 @@ java_import twitter4j.TwitterStream
 java_import twitter4j.TwitterStreamFactory
 
 twitterStream = TwitterStreamFactory.new.getInstance
+
+listener = StatusListener.new do
+  def onStatus(status)
+    puts "@#{status.getUser.getScreenName} - #{status.getText}"
+  end
+end
